@@ -27,21 +27,19 @@ public class MoneyController {
     }
 
     @PostMapping("/process-data")
-    public ModelAndView outputData(@RequestParam("amount-ua1") int am1,
-                                   @RequestParam("amount-ua2") int am2,
-                                   @RequestParam("amount-ua3") int am3,
-                                   @RequestParam("amount-usd1") int us1,
-                                   @RequestParam("amount-usd2") int us2,
+    public ModelAndView outputData(@RequestParam("amount-ua1") double am1,
+                                   @RequestParam("amount-ua2") double am2,
+                                   @RequestParam("amount-ua3") double am3,
+                                   @RequestParam("amount-usd1") double us1,
+                                   @RequestParam("amount-usd2") double us2,
                                    @RequestParam("exchange-rate") double exR1) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        int summUa = am1 + am2 + am3;
-        double summUsd = (us1 + us2) * exR1;
-        double total = summUsd + summUa;
-        List<ResultMoney> listsResult = resultService.getAllResult();
-        ResultMoney moneyPr = listsResult.get(listsResult.size() - 1);
+
+        double total = getSummUA(am1, am2, am3) + getSummUSD(us1, us2, exR1);
+        ResultMoney moneyPr = getPreResultMoney();
         double priorTotal = moneyPr.getResult();
-        ResultMoney money = new ResultMoney(total, LocalDate.now());
-        resultService.saveResultMoney(money);
+        ResultMoney moneyCur = new ResultMoney(total, LocalDate.now());
+        resultService.saveResultMoney(moneyCur);
         double diff = priorTotal - total;
         ModelAndView modelAndView = new ModelAndView("outputData");
         modelAndView.addObject("total", decimalFormat.format(total));
@@ -49,6 +47,25 @@ public class MoneyController {
         modelAndView.addObject("diff", decimalFormat.format(diff));
         modelAndView.addObject("data", moneyPr.getDataInput());
         return modelAndView;
+    }
+
+    private double getSummUSD(double exR1, double ... us) {
+        double sum = 0.00;
+        for (double amount : us) {
+            sum += amount;
+        }
+        return sum * exR1;}
+
+    private double getSummUA(double...am) {
+        double sum = 0.00;
+        for (double amount : am) {
+            sum += amount;
+        }
+        return sum;}
+
+    private ResultMoney getPreResultMoney() {
+        List<ResultMoney> listsResult = resultService.getAllResult();
+        return listsResult.get(listsResult.size() - 1);
     }
 
 }
