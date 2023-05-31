@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Результат</title>
+  <style>
+    .result-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .container2 {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .container3 {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="result-container">
+  <h2>Результат</h2>
+  <p>Общая сумма: <strong th:text="${total}"></strong></p>
+</div>
+<div class="container2">
+  <h2>Предыдущий результат</h2>
+  <p>Общая сумма: <strong th:text="${priorTotal}"></strong></p>
+  <p>Дата: <strong th:text="${data}"></strong></p>
+</div>
+<div class="container3">
+  <h2>Разница</h2>
+  <p>Общая сумма: <strong th:text="${diff}"></strong></p>
+</div>
+</body>
+</html>
+

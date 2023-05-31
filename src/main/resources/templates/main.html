@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ввод суммы</title>
+  <style>
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-container label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .form-container input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    .form-container button {
+      background-color: #ff0000;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="form-container">
+  <form action="/process-data" method="post">
+  <label for="amount-ua1">Введите вашу сумму в гривнах:</label>
+  <input type="number" id="amount-ua1" name="amount-ua1" placeholder="Сумма 1">
+  <input type="number" id="amount-ua2" name="amount-ua2" placeholder="Сумма 2">
+  <input type="number" id="amount-ua3" name="amount-ua3" placeholder="Сумма 3">
+
+  <label for="amount-usd1">Введите вашу сумму в долларах:</label>
+  <input type="number" id="amount-usd1" name="amount-usd1" placeholder="Сумма 1">
+  <input type="number" id="amount-usd2" name="amount-usd2" placeholder="Сумма 2">
+  <input type="number" id="exchange-rate" name="exchange-rate" placeholder="Курс" step="any">
+
+
+  <button type="submit">Подтвердить</button>
+  </form>
+</div>
+</body>
+</html>
+
+
